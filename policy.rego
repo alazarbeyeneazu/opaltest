@@ -27,6 +27,15 @@ get_user[permission.permissions]{
 	some permission in data.role_permissions
 	permission.role==role.id
 }	
+get_permission[permission.permissions]{
+	input_user := input.subject
+	some user in data.users
+	user.id==input_user.id
+	some role in data.roles
+	role.id==user.role
+	some permission in data.role_permissions
+	permission.role==role.id
+}	
 	
 allow{
 	input.object.userid==input.subject.id
